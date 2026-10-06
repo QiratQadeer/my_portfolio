@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
+  const form = useRef();
+  const [status, setStatus] = useState('');
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    // Replace the placeholders with your actual EmailJS credentials
+    emailjs.sendForm(
+      'service_j6cnatr', 
+      'template_unwpttt', 
+      form.current,
+      'mTRSRWLFESUDm9lgb'
+    )
+    .then((result) => {
+        console.log(result.text);
+        setStatus('success');
+        e.target.reset(); // Clear form
+        setTimeout(() => setStatus(''), 5000); // Clear success message after 5 seconds
+    }, (error) => {
+        console.log(error.text);
+        setStatus('error');
+        setTimeout(() => setStatus(''), 5000);
+    });
+  };
   return (
     <section id="contact" className="contact-section">
       <div className="container">
@@ -57,20 +83,34 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form className="contact-form">
+            <form ref={form} onSubmit={sendEmail} className="contact-form">
               <div className="form-group">
-                <input type="text" placeholder="Your Name" required />
+                <input type="text" name="user_name" placeholder="Your Name" required />
               </div>
               <div className="form-group">
-                <input type="email" placeholder="Your Email" required />
+                <input type="email" name="user_email" placeholder="Your Email" required />
               </div>
               <div className="form-group">
-                <input type="text" placeholder="Subject" required />
+                <input type="text" name="subject" placeholder="Subject" required />
               </div>
               <div className="form-group">
-                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
               </div>
-              <button type="submit" className="btn-primary form-submit">Send Message</button>
+
+              {status === 'success' && (
+                <div className="form-message success" style={{color: '#4ade80', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px'}}>
+                  <FaCheckCircle /> Message sent successfully!
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="form-message error" style={{color: '#f87171', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px'}}>
+                  <FaExclamationCircle /> Failed to send message. Please try again.
+                </div>
+              )}
+
+              <button type="submit" className="btn-primary form-submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending...' : 'Send Message'}
+              </button>
             </form>
           </motion.div>
         </div>

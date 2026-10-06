@@ -192,19 +192,27 @@
 }
 
 @media (max-width: 576px) {
+  .hero-section {
+    padding-top: 100px;
+  }
+
   .hero-title {
     font-size: 1.8rem;
   }
   
   .hero-buttons {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 15px;
     justify-content: center;
+    width: 100%;
+  }
+
+  .hero-buttons > * {
+    width: 100%;
   }
   
   .visual-circle {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
 }

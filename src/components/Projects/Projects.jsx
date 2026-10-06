@@ -33,7 +33,7 @@ const projects = [
     title: 'See & Hire',
     category: 'Recruitment Platform',
     description: 'Recruitment platform.',
-    images: ['/seeandhire-1.jpg', '/seeandhire-2.jpg', '/seeandhire-3.jpg'],
+    images: ['https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600&auto=format&fit=crop'],
     features: ['Employer Dashboard', 'Candidate Dashboard', 'Video Interview', 'AI Job Recommendation', 'Resume Management'],
     tech: ['React Native', 'Firebase', 'Redux'],
     github: '#',
