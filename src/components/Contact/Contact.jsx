@@ -14,26 +14,26 @@ const Contact = () => {
 
     // Replace the placeholders with your actual EmailJS credentials
     emailjs.sendForm(
-      'service_j6cnatr', 
-      'template_unwpttt', 
+      'service_j6cnatr',
+      'template_unwpttt',
       form.current,
       'mTRSRWLFESUDm9lgb'
     )
-    .then((result) => {
+      .then((result) => {
         console.log(result.text);
         setStatus('success');
         e.target.reset(); // Clear form
         setTimeout(() => setStatus(''), 5000); // Clear success message after 5 seconds
-    }, (error) => {
+      }, (error) => {
         console.log(error.text);
         setStatus('error');
         setTimeout(() => setStatus(''), 5000);
-    });
+      });
   };
   return (
     <section id="contact" className="contact-section">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="contact-container">
-          <motion.div 
+          <motion.div
             className="contact-info"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -57,13 +57,13 @@ const Contact = () => {
               I'm currently available for freelance projects and full-time opportunities.
               Whether you have a question or just want to say hi, I'll try my best to get back to you!
             </p>
-            
+
             <div className="contact-methods">
               <div className="contact-method">
                 <div className="method-icon"><FaEnvelope /></div>
                 <div className="method-details">
                   <h4>Email</h4>
-                  <p>qadeerqirat29@gmail.com</p>
+                  <p>qiratqadeer29802@gmail.com</p>
                 </div>
               </div>
               <div className="contact-method">
@@ -76,7 +76,7 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="contact-form-container glass-panel"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -98,12 +98,12 @@ const Contact = () => {
               </div>
 
               {status === 'success' && (
-                <div className="form-message success" style={{color: '#4ade80', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px'}}>
+                <div className="form-message success" style={{ color: '#4ade80', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <FaCheckCircle /> Message sent successfully!
                 </div>
               )}
               {status === 'error' && (
-                <div className="form-message error" style={{color: '#f87171', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px'}}>
+                <div className="form-message error" style={{ color: '#f87171', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <FaExclamationCircle /> Failed to send message. Please try again.
                 </div>
               )}
